@@ -70,3 +70,19 @@ obiDesigner.socialMediaHype(2000, 'Instagram');
 obiDesigner.celebrateBirthday(2025);
 obiDesigner.promoteBrand();
 obiDesigner.introduction();
+
+// Creating another instance of FashionDesigner subclass
+var ngoziDesigner = new FashionDesigner(
+    'Ngozi',
+    2005,
+    'AzureElegance',
+    3,
+    'casual wear',
+    'Abuja',
+    'Blue'
+);
+
+ngoziDesigner.socialMediaHype(1500, 'TikTok');
+ngoziDesigner.celebrateBirthday(2025);
+ngoziDesigner.promoteBrand();
+ngoziDesigner.introduction();
