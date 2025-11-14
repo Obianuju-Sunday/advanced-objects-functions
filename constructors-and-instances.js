@@ -1,25 +1,72 @@
 
 // Personal Challenge 
 class Person {
-  constructor(name, yearOfBirth){
-    this.name = name;
-    this.yearOfBirth = yearOfBirth;
-  }
-  
-  celebrateBirthday(currentYear){
-    var age = currentYear - this.yearOfBirth;
-    console.log(`Happy birthday ${this.name}. You are ${age} years old now.`);
-    this.age = age;
-  }
+    constructor(name, yearOfBirth) {
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+    }
+
+    celebrateBirthday(currentYear) {
+        var age = currentYear - this.yearOfBirth;
+        console.log(`Happy birthday ${this.name}. You are ${age} years old now.`);
+        this.age = age;
+    }
 }
 
-// Creating instances of Person
+// Creating instances of Person superclass
 var obianuju = new Person('Obianuju', 2003);
 var ngozi = new Person('Ngozi', 2005);
 
-// Testing the celebrateBirthday method
-ngozi.celebrateBirthday(2025); // Output: Happy birthday Ngozi. You are 20 years old now.
-obianuju.celebrateBirthday(2025); // Output: Happy birthday Obianuju. You are 22 years old now.
 
-console.log(obianuju);
-console.log(ngozi);
+ngozi.celebrateBirthday(2025); 
+obianuju.celebrateBirthday(2025); 
+
+
+
+// Inheritance Personal Challenge
+class FashionDesigner extends Person {
+    constructor(name, yearOfBirth, brandName, yearsOfExperience, specialty, studioLocation, signatureColor) {
+        super(name, yearOfBirth)
+        this.brandName = brandName;
+        this.yearsOfExperience = yearsOfExperience;
+        this.specialty = specialty;
+        this.studioLocation = studioLocation;
+        this.signatureColor = signatureColor;
+    }
+
+
+    socialMediaHype(followers, platform) {
+        console.log(`${this.name}, the designer of ${this.brandName}, with over ${followers} followers is slaying the game with ${this.specialty} on ${platform}`);
+    }
+
+    celebrateBirthday(currentYear) {
+        var age = currentYear - this.yearOfBirth
+        console.log(`Happy Birthday ${this.name}! Designer ${this.brandName} is now ${age} and ready to slay the runway!`)
+    }
+
+    promoteBrand() {
+        console.log(`Check out ${this.brandName}, the hottest ${this.specialty} designs straight from ${this.studioLocation}!`)
+    }
+
+    introduction() {
+        console.log(`Hi! I'm ${this.name}, the designer behind ${this.brandName}. With ${this.yearsOfExperience} years of experience, I specialize in ${this.specialty}. My signature color is ${this.signatureColor} and my studio is based in ${this.studioLocation}.`)
+    }
+}
+
+
+// Instance of FashionDesigner subclass
+var obiDesigner = new FashionDesigner(
+    'Obianuju',
+    2003,
+    'CrimsonAura',
+    5,
+    'evening gowns',
+    'Lagos',
+    'Maroon'
+);
+
+
+obiDesigner.socialMediaHype(2000, 'Instagram');
+obiDesigner.celebrateBirthday(2025);
+obiDesigner.promoteBrand();
+obiDesigner.introduction();
