@@ -21,7 +21,7 @@ var ngozi = new Person('Ngozi', 2005);
 ngozi.celebrateBirthday(2025); 
 obianuju.celebrateBirthday(2025); 
 
-
+console.log(ngozi)
 
 // Inheritance Personal Challenge
 class FashionDesigner extends Person {
@@ -40,7 +40,8 @@ class FashionDesigner extends Person {
     }
 
     celebrateBirthday(currentYear) {
-        var age = currentYear - this.yearOfBirth
+        var age = currentYear - this.yearOfBirth;
+        this.age = age;
         console.log(`Happy Birthday ${this.name}! Designer ${this.brandName} is now ${age} and ready to slay the runway!`)
     }
 
@@ -55,21 +56,21 @@ class FashionDesigner extends Person {
 
 
 // Instance of FashionDesigner subclass
-var obiDesigner = new FashionDesigner(
+var ujuDesigner = new FashionDesigner(
     'Obianuju',
     2003,
     'CrimsonAura',
     5,
-    'evening gowns',
+    'Bridal gowns',
     'Lagos',
     'Maroon'
 );
 
 
-obiDesigner.socialMediaHype(2000, 'Instagram');
-obiDesigner.celebrateBirthday(2025);
-obiDesigner.promoteBrand();
-obiDesigner.introduction();
+ujuDesigner.socialMediaHype(2000, 'Instagram');
+ujuDesigner.celebrateBirthday(2025);
+ujuDesigner.promoteBrand();
+ujuDesigner.introduction();
 
 // Creating another instance of FashionDesigner subclass
 var ngoziDesigner = new FashionDesigner(
@@ -77,7 +78,7 @@ var ngoziDesigner = new FashionDesigner(
     2005,
     'AzureElegance',
     3,
-    'casual wear',
+    'Casual wears',
     'Abuja',
     'Blue'
 );
@@ -86,3 +87,7 @@ ngoziDesigner.socialMediaHype(1500, 'TikTok');
 ngoziDesigner.celebrateBirthday(2025);
 ngoziDesigner.promoteBrand();
 ngoziDesigner.introduction();
+
+
+console.log(ngoziDesigner)
+console.log(ujuDesigner)
