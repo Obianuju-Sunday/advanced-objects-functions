@@ -21,8 +21,6 @@ var ngozi = new Person('Ngozi', 2005);
 ngozi.celebrateBirthday(2025); 
 obianuju.celebrateBirthday(2025); 
 
-console.log(ngozi)
-
 // Inheritance Personal Challenge
 class FashionDesigner extends Person {
     constructor(name, yearOfBirth, brandName, yearsOfExperience, specialty, studioLocation, signatureColor) {
@@ -89,5 +87,86 @@ ngoziDesigner.promoteBrand();
 ngoziDesigner.introduction();
 
 
-console.log(ngoziDesigner)
-console.log(ujuDesigner)
+class Product {
+  constructor(name, price, category, stock) {
+    this.name = name;
+    this.price = price;
+    this.category = category;
+    this.stock = stock;
+      console.log(this.price);
+
+  }
+  
+  
+  applyDiscount(percent){
+    this.price = this.price - (this.price * (percent / 100));
+    console.log(this.price);
+  }
+  
+  isInStock() {
+    if (this.stock > 0) {
+      console.log('We have this product in stock.')
+    } else {
+      console.log('This product is out of stock.');
+    }
+  }
+}
+
+var firstProduct = new Product ('Evening gown', 400, 'Bridal', 8);
+firstProduct.applyDiscount(5);
+firstProduct.isInStock();
+
+
+var secondProduct = new Product('Casual wears', 250, 'Everyday', 0)
+secondProduct.applyDiscount(15);
+secondProduct.isInStock(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
