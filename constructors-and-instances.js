@@ -1,4 +1,3 @@
-
 // Personal Challenge 
 class Person {
     constructor(name, yearOfBirth) {
@@ -12,19 +11,43 @@ class Person {
         this.age = age;
     }
 }
-
 // Creating instances of Person superclass
 var obianuju = new Person('Obianuju', 2003);
 var ngozi = new Person('Ngozi', 2005);
 
 
-// ngozi.celebrateBirthday(2025);
-// obianuju.celebrateBirthday(2025);
+
+// Product class
+class Product {
+    constructor(name, price, category, stock) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.stock = stock;
+    }
+
+
+    applyDiscount(percent) {
+        this.price = this.price - (this.price * (percent / 100));
+        console.log(`The new price after ${percent}% discount is $${this.price}`);
+    }
+
+    isInStock() {
+        if (this.stock > 0) {
+            console.log('We have this product in stock.')
+        } else {
+            console.log('This product is out of stock.');
+        }
+    }
+}
+// Creating instances of Product class
+var firstProduct = new Product('Evening gown', 400, 'Bridal', 8);
+var secondProduct = new Product('Casual wears', 250, 'Everyday', 0);
 
 
 // Designer subclass that extends Person superclass
 class Designer extends Person {
-    constructor(name, yearOfBirth,brandName, catalog) {
+    constructor(name, yearOfBirth,brandName, ) {
         super(name, yearOfBirth)
         this.brandName = brandName;
         this.catalog = [];
@@ -61,8 +84,11 @@ class Designer extends Person {
     }
 
 }
-
+// Instances of Designer subclass
 var designer1 = new Designer('Obianuju', 2003, 'CrimsonAura', []);
+var designer2 = new Designer('Ngozi', 2005, 'AzureElegance', []);
+
+// Adding and removing products from designer's catalog
 designer1.addProduct(firstProduct);
 designer1.addProduct(secondProduct); 
 designer1.removeProduct('Casual wears');
@@ -71,38 +97,65 @@ console.log(designer1);
 
 
 
+// Customer subclass that extends Person superclass
 
-class Product {
-    constructor(name, price, category, stock) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.stock = stock;
+class Customer extends Person {
+  constructor(name, wallet) {
+    super(name)
+    this.cart = [];
+    this.wallet = wallet;
+  }
+  
+  
+  addToCart(product){
+    this.cart.push(product);
+    console.log(`${product.name} has been added to your cart.`)
+  }
+  
+  removeFromCart(productName){
+    var found = false;
+    for (var i = 0; i < this.cart.length; i++) {
+      if (this.cart[i].name === productName) {
+            this.cart.splice(i, 1);
+            found = true;
+            console.log('Product found and removed.');
+            break;
+      }
     }
-
-
-    applyDiscount(percent) {
-        this.price = this.price - (this.price * (percent / 100));
-        console.log(`The new price after ${percent}% discount is $${this.price}`);
+    if (!found) {
+      console.log('Product not found.')
     }
-
-    isInStock() {
-        if (this.stock > 0) {
-            console.log('We have this product in stock.')
-        } else {
-            console.log('This product is out of stock.');
-        }
+  }
+  
+  viewCart(){
+    var total = 0;
+    if (this.cart.length === 0) {
+      console.log('Cart is empty.');
+      return;
+    } else {
+      for (var i = 0; i < this.cart.length; i++) {
+        total += this.cart[i].price;
+        console.log(`Name:${this.cart[i].name}, Category: ${this.cart[i].category}, Price:${this.cart[i].price}, Number of Stock:${this.cart[i].stock}`)
+      }
     }
+    console.log(`Total: $${total}`)
+  }
 }
+// Instances of Customer subclass
+var firstCustomer = new Customer('Joy', 2800);
+var secondCustomer = new Customer('Ada', 1500);
 
-var firstProduct = new Product('Evening gown', 400, 'Bridal', 8);
-// firstProduct.applyDiscount(5);
-// firstProduct.isInStock();
+// Adding, removing and viewing items in customer's cart
+firstCustomer.addToCart(firstProduct);
+firstCustomer.addToCart(secondProduct);
+firstCustomer.removeFromCart('Evening gown')
+firstCustomer.viewCart();
 
 
-var secondProduct = new Product('Casual wears', 250, 'Everyday', 0)
 // secondProduct.applyDiscount(15);
 // secondProduct.isInStock(0);
+// firstProduct.applyDiscount(5);
+// firstProduct.isInStock();
 
 
 
