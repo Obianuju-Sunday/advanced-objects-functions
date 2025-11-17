@@ -21,6 +21,185 @@ var ngozi = new Person('Ngozi', 2005);
 // ngozi.celebrateBirthday(2025);
 // obianuju.celebrateBirthday(2025);
 
+
+// Designer subclass that extends Person superclass
+class Designer extends Person {
+    constructor(name, yearOfBirth,brandName, catalog) {
+        super(name, yearOfBirth)
+        this.brandName = brandName;
+        this.catalog = [];
+    }
+
+    // adds a new Product
+    addProduct(product) {
+        this.catalog.push(product)
+    }
+
+    // removes a product by its name
+    removeProduct(productName) {
+        var found = false;
+        for (var i = 0; i < this.catalog.length; i++) {
+            if (this.catalog[i].name == productName) {
+                this.catalog.splice(i, 1);
+                console.log('Product Removed Successfully')
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            console.log('Product not found')
+        }
+    }
+
+    // loops through catalog and logs details of products
+    listProduct() {
+        for (var i = 0; i < this.catalog.length; i++) {
+            console.log(` Product Name: ${this.catalog[i].name} \n Price: ${this.catalog[i].price}, \n Category: ${this.catalog[i].category}, \n Number of Stocks: ${this.catalog[i].stock}
+      `)
+        }
+    }
+
+}
+
+var designer1 = new Designer('Obianuju', 2003, 'CrimsonAura', []);
+designer1.addProduct(firstProduct);
+designer1.addProduct(secondProduct); 
+designer1.removeProduct('Casual wears');
+designer1.listProduct();
+console.log(designer1);
+
+
+
+
+class Product {
+    constructor(name, price, category, stock) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.stock = stock;
+    }
+
+
+    applyDiscount(percent) {
+        this.price = this.price - (this.price * (percent / 100));
+        console.log(`The new price after ${percent}% discount is $${this.price}`);
+    }
+
+    isInStock() {
+        if (this.stock > 0) {
+            console.log('We have this product in stock.')
+        } else {
+            console.log('This product is out of stock.');
+        }
+    }
+}
+
+var firstProduct = new Product('Evening gown', 400, 'Bridal', 8);
+// firstProduct.applyDiscount(5);
+// firstProduct.isInStock();
+
+
+var secondProduct = new Product('Casual wears', 250, 'Everyday', 0)
+// secondProduct.applyDiscount(15);
+// secondProduct.isInStock(0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Inheritance Personal Challenge
 // class FashionDesigner extends Person {
 //     constructor(name, yearOfBirth, brandName, yearsOfExperience, specialty, studioLocation, signatureColor) {
@@ -85,126 +264,3 @@ var ngozi = new Person('Ngozi', 2005);
 // ngoziDesigner.celebrateBirthday(2025);
 // ngoziDesigner.promoteBrand();
 // ngoziDesigner.introduction();
-
-
-class Product {
-    constructor(name, price, category, stock) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.stock = stock;
-        // console.log(this.price);
-
-    }
-
-
-    applyDiscount(percent) {
-        this.price = this.price - (this.price * (percent / 100));
-        // console.log(this.price);
-    }
-
-    isInStock() {
-        if (this.stock > 0) {
-            console.log('We have this product in stock.')
-        } else {
-            console.log('This product is out of stock.');
-        }
-    }
-}
-
-var firstProduct = new Product('Evening gown', 400, 'Bridal', 8);
-// firstProduct.applyDiscount(5);
-// firstProduct.isInStock();
-
-
-var secondProduct = new Product('Casual wears', 250, 'Everyday', 0)
-// secondProduct.applyDiscount(15);
-// secondProduct.isInStock(0);
-
-
-
-
-class Designer extends Person {
-    constructor(name, yearOfBirth,brandName, catalog) {
-        super(name, yearOfBirth)
-        this.brandName = brandName;
-        this.catalog = [];
-    }
-
-    // adds a new Product
-    addProduct(product) {
-        this.catalog.push(product)
-    }
-
-    // removes a product by its name
-    removeProduct(productName) {
-        var found = false;
-        for (var i = 0; i < this.catalog.length; i++) {
-            if (this.catalog[i].name == productName) {
-                this.catalog.splice(i, 1);
-                console.log('Product Removed Successfully')
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            console.log('Product not found')
-        }
-    }
-
-    // loops through catalog and logs details of products
-    listProduct() {
-        for (var i = 0; i < this.catalog.length; i++) {
-            console.log(` Product Name: ${this.catalog[i].name} \n Price: ${this.catalog[i].price}, \n Category: ${this.catalog[i].category}, \n Number of Stocks: ${this.catalog[i].stock}
-      `)
-        }
-    }
-
-}
-
-var designer1 = new Designer('Obianuju', 2003, 'CrimsonAura', []);
-designer1.addProduct(firstProduct);
-designer1.addProduct(secondProduct); 
-designer1.removeProduct('Casual wears');
-designer1.listProduct();
-console.log(designer1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
