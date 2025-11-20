@@ -146,7 +146,7 @@ class Customer extends Person {
         } else {
             for (var i = 0; i < this.cart.length; i++) {
                 total += this.cart[i].product.price * this.cart[i].quantity;
-                console.log(`Name:${this.cart[i].product.name}, Category: ${this.cart[i].product.category}, Price:${this.cart[i].product.price}, Number of Stock:${this.cart[i].product.stock}`)
+                console.log(`Name:${this.cart[i].product.name}, Category: ${this.cart[i].product.category}, Price:${this.cart[i].product.price}, Number of Stock:${this.cart[i].product.stock}, Quantity: ${this.cart[i].quantity}, Subtotal: $${this.cart[i].product.price * this.cart[i].quantity}`)
             }
         }
         console.log(`Total price: $${total}`)
@@ -213,6 +213,9 @@ var firstCustomer = new Customer('Joy', 4000);
 firstCustomer.addToCart(firstProduct, 4);
 firstCustomer.addToCart(firstProduct, 44);
 firstCustomer.addToCart(secondProduct, 2);
+// firstCustomer.viewCart();
+// console.log(firstCustomer.cart);
+firstCustomer.viewCart();
 
 
 
