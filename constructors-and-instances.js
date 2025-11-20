@@ -41,13 +41,13 @@ class Product {
     }
 }
 // Creating instances of Product class
-var firstProduct = new Product('Evening gown', 400, 'Bridal', 8);
-var secondProduct = new Product('Casual wears', 250, 'Everyday', 0);
+var firstProduct = new Product('Evening gown', 400, 'Bridal', 10);
+var secondProduct = new Product('Casual wears', 250, 'Everyday', 7);
 
 
 // Designer subclass that extends Person superclass
 class Designer extends Person {
-    constructor(name, yearOfBirth,brandName, ) {
+    constructor(name, yearOfBirth, brandName,) {
         super(name, yearOfBirth)
         this.brandName = brandName;
         this.catalog = [];
@@ -89,73 +89,131 @@ var designer1 = new Designer('Obianuju', 2003, 'CrimsonAura', []);
 var designer2 = new Designer('Ngozi', 2005, 'AzureElegance', []);
 
 // Adding and removing products from designer's catalog
-designer1.addProduct(firstProduct);
-designer1.addProduct(secondProduct); 
-designer1.removeProduct('Casual wears');
-designer1.listProduct();
-console.log(designer1);
+// designer1.addProduct(firstProduct);
+// designer1.addProduct(secondProduct);
+// designer1.removeProduct('Casual wears');
+// designer1.listProduct();
+// console.log(designer1);
 
 
 
 // Customer subclass that extends Person superclass
 
 class Customer extends Person {
-  constructor(name, wallet) {
-    super(name)
-    this.cart = [];
-    this.wallet = wallet;
-  }
-  
-  
-  addToCart(product){
-    this.cart.push(product);
-    console.log(`${product.name} has been added to your cart.`)
-  }
-  
-  removeFromCart(productName){
-    var found = false;
-    for (var i = 0; i < this.cart.length; i++) {
-      if (this.cart[i].name === productName) {
-            this.cart.splice(i, 1);
-            found = true;
-            console.log('Product found and removed.');
-            break;
-      }
+    constructor(name, wallet) {
+        super(name)
+        this.cart = [];
+        this.wallet = wallet;
     }
-    if (!found) {
-      console.log('Product not found.')
+
+
+    addToCart(product, quantity) {
+
+        var found = false;
+        for (var i = 0; i < this.cart.length; i++) {
+            if (this.cart[i].product.name === product.name) {
+                this.cart[i].quantity += quantity;
+                found = true;
+                break
+            }
+        }
+        if (!found) {
+            this.cart.push({ product: product, quantity: quantity });
+            console.log(`${product.name} has been added to your cart.`)
+        }
     }
-  }
-  
-  viewCart(){
-    var total = 0;
-    if (this.cart.length === 0) {
-      console.log('Cart is empty.');
-      return;
-    } else {
-      for (var i = 0; i < this.cart.length; i++) {
-        total += this.cart[i].price;
-        console.log(`Name:${this.cart[i].name}, Category: ${this.cart[i].category}, Price:${this.cart[i].price}, Number of Stock:${this.cart[i].stock}`)
-      }
+
+    removeFromCart(productName) {
+        var found = false;
+        for (var i = 0; i < this.cart.length; i++) {
+            if (this.cart[i].product.name === productName) {
+                this.cart.splice(i, 1);
+                found = true;
+                console.log('Product found and removed.');
+                break;
+            }
+        }
+        if (!found) {
+            console.log('Product not found.')
+        }
     }
-    console.log(`Total: $${total}`)
-  }
+
+    viewCart() {
+        var total = 0;
+        if (this.cart.length === 0) {
+            console.log('Cart is empty.');
+            return;
+        } else {
+            for (var i = 0; i < this.cart.length; i++) {
+                total += this.cart[i].product.price * this.cart[i].quantity;
+                console.log(`Name:${this.cart[i].product.name}, Category: ${this.cart[i].product.category}, Price:${this.cart[i].product.price}, Number of Stock:${this.cart[i].product.stock}`)
+            }
+        }
+        console.log(`Total price: $${total}`)
+    }
+
+    checkout() {
+
+        var total = 0;
+
+        if (this.cart.length === 0) {
+            console.log('You have no product in your cart.');
+            return;
+        }
+        for (var i = 0; i < this.cart.length; i++) {
+            if (this.cart[i].product.stock >= this.cart[i].quantity) {
+                console.log('Item is in stock, proceeding to checkout.');
+                total += this.cart[i].product.price * this.cart[i].quantity;
+            } else {
+                console.log(`Sorry, ${this.cart[i].product.name} is out of stock.`);
+                return;
+            }
+        }
+        console.log(`Total amount to be paid is $${total}`);
+
+        if (this.wallet >= total) {
+            this.wallet -= total;
+            for (var i = 0; i < this.cart.length; i++) {
+                this.cart[i].product.stock -= this.cart[i].quantity;
+            }
+            this.cart = [];
+            console.log(`Checkout successful. Your remaining balance is $${this.wallet}`);
+        } else {
+            console.log('Insufficient funds.');
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// FULL IMPLEMENTATION OF CUSTOMER SUBCLASS METHODS AND TESTING IT'S METHODS
+
+
 // Instances of Customer subclass
-var firstCustomer = new Customer('Joy', 2800);
-var secondCustomer = new Customer('Ada', 1500);
+var firstCustomer = new Customer('Joy', 4000);
+// var secondCustomer = new Customer('Ada', 1500);
+
 
 // Adding, removing and viewing items in customer's cart
-firstCustomer.addToCart(firstProduct);
-firstCustomer.addToCart(secondProduct);
-firstCustomer.removeFromCart('Evening gown')
-firstCustomer.viewCart();
+firstCustomer.addToCart(firstProduct, 4);
+firstCustomer.addToCart(firstProduct, 44);
+firstCustomer.addToCart(secondProduct, 2);
 
-
-// secondProduct.applyDiscount(15);
-// secondProduct.isInStock(0);
-// firstProduct.applyDiscount(5);
-// firstProduct.isInStock();
 
 
 
