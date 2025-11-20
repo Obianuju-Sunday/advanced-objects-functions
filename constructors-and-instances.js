@@ -169,8 +169,6 @@ class Customer extends Person {
             total += this.cart[i].product.price * this.cart[i].quantity;
 
         }
-
-
         console.log(`Total amount to be paid is $${total}`);
 
         if (this.wallet >= total) {
