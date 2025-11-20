@@ -146,7 +146,7 @@ class Customer extends Person {
         } else {
             for (var i = 0; i < this.cart.length; i++) {
                 total += this.cart[i].product.price * this.cart[i].quantity;
-                console.log(`Name:${this.cart[i].product.name}, Category: ${this.cart[i].product.category}, Price:${this.cart[i].product.price}, Number of Stock:${this.cart[i].product.stock}, Quantity: ${this.cart[i].quantity}, Subtotal: $${this.cart[i].product.price * this.cart[i].quantity}`)
+                console.log(`Name:${this.cart[i].product.name}, Category: ${this.cart[i].product.category}, Price:$${this.cart[i].product.price}, Quantity: ${this.cart[i].quantity}, Subtotal: $${this.cart[i].product.price * this.cart[i].quantity}`)
             }
         }
         console.log(`Total price: $${total}`)
@@ -163,12 +163,14 @@ class Customer extends Person {
         for (var i = 0; i < this.cart.length; i++) {
             if (this.cart[i].product.stock >= this.cart[i].quantity) {
                 console.log('Item is in stock, proceeding to checkout.');
-                total += this.cart[i].product.price * this.cart[i].quantity;
             } else {
                 console.log(`Sorry, ${this.cart[i].product.name} is out of stock.`);
-                return;
             }
+            total += this.cart[i].product.price * this.cart[i].quantity;
+
         }
+
+
         console.log(`Total amount to be paid is $${total}`);
 
         if (this.wallet >= total) {
@@ -179,7 +181,7 @@ class Customer extends Person {
             this.cart = [];
             console.log(`Checkout successful. Your remaining balance is $${this.wallet}`);
         } else {
-            console.log('Insufficient funds.');
+            console.log('Insufficient balance.');
         }
     }
 }
@@ -213,9 +215,8 @@ var firstCustomer = new Customer('Joy', 4000);
 firstCustomer.addToCart(firstProduct, 4);
 firstCustomer.addToCart(firstProduct, 44);
 firstCustomer.addToCart(secondProduct, 2);
-// firstCustomer.viewCart();
-// console.log(firstCustomer.cart);
 firstCustomer.viewCart();
+firstCustomer.checkout();
 
 
 
