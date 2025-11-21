@@ -42,7 +42,8 @@ class Product {
 }
 // Creating instances of Product class
 var firstProduct = new Product('Evening gown', 400, 'Bridal', 10);
-var secondProduct = new Product('Casual wears', 250, 'Everyday', 7);
+var secondProduct = new Product('Casual wears', 250, 'Everyday', 5);
+var thirdProduct = new Product('Office attire', 150, 'Workwear', 0);
 
 
 // Designer subclass that extends Person superclass
@@ -154,33 +155,45 @@ class Customer extends Person {
 
     checkout() {
 
-        var total = 0;
+        var totalValidAmount = 0;
+        var validItems = [];
+        var invalidItems = [];
 
         if (this.cart.length === 0) {
             console.log('You have no product in your cart.');
             return;
-        }
-        for (var i = 0; i < this.cart.length; i++) {
-            if (this.cart[i].product.stock >= this.cart[i].quantity) {
-                console.log('Item is in stock, proceeding to checkout.');
-            } else {
-                console.log(`Sorry, ${this.cart[i].product.name} is out of stock.`);
-            }
-            total += this.cart[i].product.price * this.cart[i].quantity;
-
-        }
-        console.log(`Total amount to be paid is $${total}`);
-
-        if (this.wallet >= total) {
-            this.wallet -= total;
-            for (var i = 0; i < this.cart.length; i++) {
-                this.cart[i].product.stock -= this.cart[i].quantity;
-            }
-            this.cart = [];
-            console.log(`Checkout successful. Your remaining balance is $${this.wallet}`);
         } else {
-            console.log('Insufficient balance.');
+            for (var i = 0; i < this.cart.length; i++) {
+                if (this.cart[i].product.stock >= this.cart[i].quantity) {
+                    validItems.push(this.cart[i]);
+                    console.log(`${this.cart[i].product.name} is in stock, proceeding to checkout.`);
+                } else {
+                    invalidItems.push(this.cart[i]);
+                    console.log(`${this.cart[i].product.name} is out of stock.`);
+                }
+            }
+            if (validItems.length === 0) {
+                console.log('No valid items in cart to checkout.');
+
+            } else {
+                for (var i = 0; i < validItems.length; i++) {
+                    totalValidAmount += validItems[i].product.price * validItems[i].quantity;
+                }
+            }
+            console.log(`Total amount for valid items to be paid is $${totalValidAmount}`);
+
+            if (this.wallet >= totalValidAmount) {
+                this.wallet -= totalValidAmount;
+                for (var i = 0; i < this.cart.length; i++) {
+                    this.cart[i].product.stock -= this.cart[i].quantity;
+                }
+                this.cart = invalidItems;
+                console.log(`Checkout successful. Your remaining balance is $${this.wallet}. Items not bought due to stock issues remain in your cart.`);
+            } else {
+                console.log(`WALLET: $${this.wallet}. Insufficient balance to purchase the available in-stock items. \nWallet said “girl be serious”. Lol.`);
+            }
         }
+
     }
 }
 
@@ -205,16 +218,19 @@ class Customer extends Person {
 
 
 // Instances of Customer subclass
-var firstCustomer = new Customer('Joy', 4000);
+var firstCustomer = new Customer('Joy', 2000);
 // var secondCustomer = new Customer('Ada', 1500);
 
 
 // Adding, removing and viewing items in customer's cart
-firstCustomer.addToCart(firstProduct, 4);
-firstCustomer.addToCart(firstProduct, 44);
+firstCustomer.addToCart(firstProduct, 8);
 firstCustomer.addToCart(secondProduct, 2);
+firstCustomer.addToCart(thirdProduct, 1);
+// firstCustomer.removeFromCart('Casual wears');
 firstCustomer.viewCart();
 firstCustomer.checkout();
+console.log(firstCustomer.cart);
+
 
 
 
