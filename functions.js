@@ -35,4 +35,6 @@ var maxHeartRates = arrayCalc(ages, maxHeartRate)
 
 console.log(ages);
 console.log(fullAges);
-console.log(maxHeartRates)
+console.log(maxHeartRates);
+
+

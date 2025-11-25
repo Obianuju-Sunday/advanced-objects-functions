@@ -13,7 +13,7 @@ This repo documents my hands-on learning journey through advanced JavaScript —
 To practice writing structured, readable, and efficient code while building a solid foundation in advanced JavaScript.
 
 ## How to Use
-- Open each folder by topic (`constructors-and-instances`, `objects`, etc)
+- Open each folder by topic (`constructors-and-instances`, `objects`, `functions` etc)
 - Review examples and challenges
 - Experiment by adding your own code snippets
 
