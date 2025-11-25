@@ -38,3 +38,34 @@ console.log(fullAges);
 console.log(maxHeartRates);
 
 
+// Passing functions as arguments practice
+
+function addNumbers(a, b) {
+    return a + b;
+}
+
+function multiplyNumbers(a, b) {
+    return a * b;
+}
+
+function subtractNumbers(a, b) {
+    return a - b;
+}
+
+function divideNumbers(a, b) {
+    return a / b;
+}
+
+function calculate(a,b,opsFn) {
+    return opsFn(a,b);
+}
+
+var sum = addNumbers(10, 5);
+var product = multiplyNumbers(10, 5);
+var difference = subtractNumbers(10, 5);
+var quotient = divideNumbers(10, 5);
+
+console.log(sum);
+console.log(product);
+console.log(difference);
+console.log(quotient);
