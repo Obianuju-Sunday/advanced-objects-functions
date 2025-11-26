@@ -17,6 +17,7 @@
 
 // console.log(currentMode('Obianuju', 'JavaScript'));
 
+// Application Configuration using IIFE
 (function () {
   const config = {
     theme: "dark",
@@ -40,6 +41,8 @@
   console.log(`Welcome ${config.user}! Your app is set to ${config.theme} theme in ${config.mode} mode.`);
 })();
 
+// Score Tracker using IIFE
+
 (function(){
   var counter = 0;
   
@@ -54,4 +57,21 @@
   
   increaseCounter();
   showCounter();
+})();
+
+// Discount System using IIFE
+(function(){
+    var originalPrice = 6800;
+    var discountPercent = 40;
+
+    function calculateDiscount(){
+        return discountPrice = originalPrice - (originalPrice * discountPercent / 100)
+    }
+
+    function showDiscount(){
+        calculateDiscount();
+        console.log(`After ${discountPercent}% discount, the new price to be paid at the checkout is ${discountPrice}.`)
+    }
+
+    showDiscount();
 })();
