@@ -39,3 +39,19 @@
 
   console.log(`Welcome ${config.user}! Your app is set to ${config.theme} theme in ${config.mode} mode.`);
 })();
+
+(function(){
+  var counter = 0;
+  
+  function increaseCounter(){
+    counter += 1;
+    console.log(counter);
+  }
+  
+  function showCounter(){
+    console.log(`Current score: ${counter}`)
+  }
+  
+  increaseCounter();
+  showCounter();
+})();
