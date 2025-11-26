@@ -33,12 +33,16 @@ var fullAges = arrayCalc(ages, isOfFullAge);
 var maxHeartRates = arrayCalc(ages, maxHeartRate)
 
 
-console.log(ages);
-console.log(fullAges);
-console.log(maxHeartRates);
+// console.log('The ages array ' , ages);
+// console.log('The full ages array: ', fullAges);
+// console.log('The heart rates array: ', maxHeartRates);
 
 
 // Passing functions as arguments practice
+
+var firstNumber = Number(prompt("Enter the first number:"));
+var secondNumber = Number(prompt("Enter the second number:"));
+var userOperation = prompt("Enter the operation (add, multiply, subtract, divide):").toLowerCase();
 
 function addNumbers(a, b) {
     return a + b;
@@ -53,19 +57,39 @@ function subtractNumbers(a, b) {
 }
 
 function divideNumbers(a, b) {
-    return a / b;
+    return Math.round(a / b);
 }
 
 function calculate(a,b,opsFn) {
     return opsFn(a,b);
 }
 
-var sum = addNumbers(10, 5);
-var product = multiplyNumbers(10, 5);
-var difference = subtractNumbers(10, 5);
-var quotient = divideNumbers(10, 5);
+switch(userOperation) {
+    case 'add':
+        alert('Sum: ' + calculate(firstNumber, secondNumber, addNumbers));
+        break;
+    case 'multiply':
+        alert('Product: ' + calculate(firstNumber, secondNumber, multiplyNumbers));
+        break;
+    case 'subtract':
+        alert('Difference: ' + calculate(firstNumber, secondNumber, subtractNumbers));
+        break;
+    case 'divide':
+        alert('Quotient: '+ calculate(firstNumber, secondNumber, divideNumbers));
+        break;
+    default:
+        console.log('Invalid operation');
+        alert('Invalid operation');
+        break;
+}
 
-console.log(sum);
-console.log(product);
-console.log(difference);
-console.log(quotient);
+// var sum = addNumbers(10, 5);
+// var product = multiplyNumbers(10, 5);
+// var difference = subtractNumbers(10, 5);
+// var quotient = divideNumbers(10, 5);
+
+// console.log('Sum: ', sum);
+// console.log('Product: ', product);
+// console.log('Difference: ', difference);
+// console.log('Quotient: ', quotient);
+
