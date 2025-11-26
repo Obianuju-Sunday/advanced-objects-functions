@@ -118,3 +118,5 @@ function functionFriendly(friendly){
 // console.log(messageFriendly('Obianuju', 'financial growth.'));
 
 console.log(functionFriendly('friendly')('Obianuju', 'financial growth'))
+
+
