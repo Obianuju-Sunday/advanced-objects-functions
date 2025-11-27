@@ -47,3 +47,33 @@ function discountCalculator(originalPrice, discountPercent) {
 
 var discountForItem1 = discountCalculator(5000, 20);
 discountForItem1();
+
+// Personalized greeting generator
+function greet(name) {
+    function notify(item) {
+        console.log(`Hey ${name}, check out this ${item}!`);
+    }
+    return notify;
+}
+
+var greetAnna = greet("Anna");
+greetAnna("hat"); 
+greetAnna("dress");
+
+// closure in a lay man term
+var number = 10;
+
+function outerFunction() {
+    var outerVariable = 20;
+
+    function innerFunction() {
+        var innerVariable = 30;
+        console.log("Sum:", number + outerVariable + innerVariable);
+    }
+
+    return innerFunction;
+}
+
+var closureFunction = outerFunction();
+closureFunction();
+
