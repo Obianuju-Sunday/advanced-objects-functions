@@ -56,9 +56,9 @@ function greet(name) {
     return notify;
 }
 
-var greetAnna = greet("Anna");
+var greetAnna = greet("Anna"); 
 greetAnna("hat"); 
-greetAnna("dress");
+greetAnna("dress"); // still remembers Anna
 
 // closure in a lay man term
 var number = 10;
