@@ -154,3 +154,11 @@ interviewQuestion('designer')('Anna');
 interviewQuestion('teacher')('John');
 interviewQuestion('engineer')('Mike');
 
+
+// Closure + IIFE Example
+(function greetPerson(name){
+  return function(){
+    console.log(`Hello ${name}, good morning!`)
+  }
+})('Joy')();
+
