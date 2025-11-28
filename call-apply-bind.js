@@ -17,3 +17,10 @@ var bagProduct = {
 }
 
 shoeProduct.calculateDiscount.call(bagProduct, 30); // Using call to borrow method for bagProduct
+
+var watchProduct = {
+    brand: 'Rolex Watch',
+    price: 5000
+}
+
+shoeProduct.calculateDiscount.apply(watchProduct, [25]); // Using apply to borrow method for watchProduct
