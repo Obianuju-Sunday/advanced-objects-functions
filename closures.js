@@ -108,5 +108,49 @@ myWallet.checkBalance();
 myWallet.addMoney(50);
 myWallet.checkBalance();
 myWallet.spendMoney(30);
-myWallet.checkBalance(); 
+myWallet.checkBalance();
+
+
+
+// Interview Question Closure Example
+
+// One way of doing it
+function interviewQuestions(job) {
+    function interviewTeacher(name) {
+        console.log(`Hello ${name}, what subject do you teach?`)
+    }
+
+    function interviewDesigner(name) {
+        console.log(`Hello ${name}, can you please explain what UX design is?`)
+    }
+
+    return {
+        interviewTeacher,
+        interviewDesigner
+    }
+}
+
+var mainInterview1 = interviewQuestions('Teacher');
+mainInterview1.interviewTeacher('Joy');
+
+var mainInterview2 = interviewQuestions('Designer');
+mainInterview2.interviewDesigner('Faith');
+
+
+// A better way of doing it and less code
+function interviewQuestion(job) {
+    return function (name) {
+        if (job === 'designer') {
+            console.log(`Hello ${name}, can you please explain what UX design is?`);
+        } else if (job === 'teacher') {
+            console.log(`Hello ${name}, what subject do you teach?`);
+        } else {
+            console.log(`Hello ${name}, what do you do for a living?`);
+        }
+    }
+}
+
+interviewQuestion('designer')('Anna');
+interviewQuestion('teacher')('John');
+interviewQuestion('engineer')('Mike');
 
