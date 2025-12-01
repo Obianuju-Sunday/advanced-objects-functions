@@ -11,6 +11,14 @@ class Question {
             console.log(this.possibleAnswers[i]);
         }
     }
+
+    checkAnswer(answer) {
+        if (answer === this.correctAnswer) {
+            console.log('Correct answer!');
+        } else {
+            console.log('Wrong answer. Try again!');
+        }
+    }
 }
 
 var question1 = new Question('What does a closure allow a function to do?', ['\n A. Access variables from its outer function even after that outer function has finished running \n B. Remove variables from memory \n C. Create global variables \n D. Stop the call stack'], 'A');
@@ -65,6 +73,7 @@ var questionBank = [
 var randomIndex = Math.floor(Math.random() * 13);
 var randomQuestion = questionBank[randomIndex];
 randomQuestion.displayQuestion();
+randomQuestion.checkAnswer('A');
 // console.log(randQuestion)
 // console.log(questionBank[randIndex].question);
 // console.log(questionBank[randIndex].possibleAnswers);
