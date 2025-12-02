@@ -14,9 +14,9 @@ class Question {
 
     checkAnswer(answer) {
         if (answer === this.correctAnswer) {
-            console.log('Correct answer!');
+            console.log(`${answer}? Correct answer!`);
         } else {
-            console.log('Wrong answer. Try again!');
+            console.log(`${answer} is Incorrect. Try again.`);
         }
     }
 }
@@ -45,7 +45,7 @@ var question11 = new Question('Which brand is famous for its red-soled heels?', 
 
 var question12 = new Question('What is the name of the fashion event held annually in New York City?', ['A. New York Fashion Week \n B. Paris Fashion Week \n C. Milan Fashion Week \n D. London Fashion Week'], 'A');
 // console.log(question12);
-var question13 = new Question('What is monochrome fashion?', ['A. Wearing different shades of a single color, \nB. Wearing black and white only, \nC. Wearing patterns and prints, \nD. Wearing bright colors'], 'A'); 
+var question13 = new Question('What is monochrome fashion?', ['A. Wearing different shades of a single color, \nB. Wearing black and white only, \nC. Wearing patterns and prints, \nD. Wearing bright colors'], 'A');
 
 // An array to hold all questions
 var questionBank = [
@@ -64,16 +64,16 @@ var questionBank = [
     question13
 ];
 
-// for (var i = 0; i < questionBank.length; i++) {
-//     console.log(questionBank[i]);
-// }
+(function runQuiz() {
+    var randomIndex = Math.floor(Math.random() * 13);
+    var randomQuestion = questionBank[randomIndex];
+    randomQuestion.displayQuestion();
+    var userAnswer = prompt('Please enter the correct answer (e.g., A, B, C, or D):').toUpperCase();
+    if(userAnswer === 'EXIT') {
+        console.log('Thanks for playing! Goodbye!');
+        return;
+    }
+    randomQuestion.checkAnswer(userAnswer);
 
-
-
-var randomIndex = Math.floor(Math.random() * 13);
-var randomQuestion = questionBank[randomIndex];
-randomQuestion.displayQuestion();
-randomQuestion.checkAnswer('A');
-// console.log(randQuestion)
-// console.log(questionBank[randIndex].question);
-// console.log(questionBank[randIndex].possibleAnswers);
+    runQuiz();
+})();
