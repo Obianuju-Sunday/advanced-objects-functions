@@ -1,6 +1,7 @@
 
 (function () {
-
+    // var score = 0; // Initialising score variable here works for checkAnswer method
+    // var keepScore = scoreKeeper(); // This works too.
     class Question {
         constructor(question, possibleAnswers, correctAnswer) {
             this.question = question;
@@ -55,35 +56,37 @@
         question13
     ];
 
+    function scoreKeeper() {
+        var score = 0;
+        return function (correct) {
+            if (correct) {
+                score++;
+                console.log('Your current score is: ' + score);
+                console.log('-----------------------------------');
+            }
+            return score;
+        }
+    }
+
+    var keepScore = scoreKeeper();
 
     function runQuiz() {
-        var keepScore = scoreKeeper();
-
         var randomIndex = Math.floor(Math.random() * 13);
         var randomQuestion = questionBank[randomIndex];
         randomQuestion.displayQuestion();
         var userAnswer = prompt('Please enter the correct answer (e.g., A, B, C, or D):').toUpperCase();
         if (userAnswer === 'EXIT') {
             console.log('Thanks for playing! Goodbye!');
+            console.log('Your final score is: ' + keepScore(false));
+            console.log('-----------------------------------');
             return;
         }
+
         randomQuestion.checkAnswer(userAnswer);
-        var currentScore = keepScore(userAnswer === randomQuestion.correctAnswer);
-        console.log('Your current score is: ' + currentScore);
-        console.log('-----------------------------------');
+        keepScore(userAnswer === randomQuestion.correctAnswer);
         runQuiz();
     }
 
     runQuiz();
-
-    function scoreKeeper() {
-        var score = 0;
-        return function (correct) {
-            if (correct) {
-                score++;
-            }
-            return score;
-        }
-    }
-
+    
 })();
