@@ -74,7 +74,6 @@
     var wrongAnswers = 0;
     var accuracy = 0;
 
-
     function nextQuestion() {
         while (totalQuestions < 10) {
             var randomIndex = Math.floor(Math.random() * 13);
@@ -87,12 +86,9 @@
                 console.log('-----------------------------------');
                 return;
             }
-            if (userAnswer === randomQuestion.correctAnswer) {
-                correctAnswers++;
-            }
             totalQuestions++;
             randomQuestion.checkAnswer(userAnswer);
-            keepScore(userAnswer === randomQuestion.correctAnswer);
+            correctAnswers = keepScore(userAnswer === randomQuestion.correctAnswer);
         }
         wrongAnswers = totalQuestions - correctAnswers;
         accuracy = correctAnswers / totalQuestions * 100;
