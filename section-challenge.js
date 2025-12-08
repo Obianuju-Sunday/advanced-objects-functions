@@ -18,7 +18,7 @@
 
         checkAnswer(answer) {
             if (answer === this.correctAnswer) {
-                console.log(`${answer}? Correct answer!`);
+                console.log(`Correct answer!`);
             } else {
                 console.log(`${answer} is Incorrect. Try again.`);
             }
@@ -69,24 +69,59 @@
     }
 
     var keepScore = scoreKeeper();
+    var totalQuestions = 0;
+    var correctAnswers = 0;
+    var wrongAnswers = 0;
+    var accuracy = 0;
 
-    function runQuiz() {
-        var randomIndex = Math.floor(Math.random() * 13);
-        var randomQuestion = questionBank[randomIndex];
-        randomQuestion.displayQuestion();
-        var userAnswer = prompt('Please enter the correct answer (e.g., A, B, C, or D):').toUpperCase();
-        if (userAnswer === 'EXIT') {
-            console.log('Thanks for playing! Goodbye!');
-            console.log('Your final score is: ' + keepScore(false));
-            console.log('-----------------------------------');
-            return;
+
+    function nextQuestion() {
+        while (totalQuestions < 10) {
+            var randomIndex = Math.floor(Math.random() * 13);
+            var randomQuestion = questionBank[randomIndex];
+            randomQuestion.displayQuestion();
+            var userAnswer = prompt('Please enter the correct answer (e.g., A, B, C, or D):').toUpperCase();
+            if (userAnswer === 'EXIT') {
+                console.log('Thanks for playing!');
+                console.log('Your final score is: ' + keepScore(false));
+                console.log('-----------------------------------');
+                return;
+            }
+            if (userAnswer === randomQuestion.correctAnswer) {
+                correctAnswers++;
+            }
+            totalQuestions++;
+            randomQuestion.checkAnswer(userAnswer);
+            keepScore(userAnswer === randomQuestion.correctAnswer);
         }
-
-        randomQuestion.checkAnswer(userAnswer);
-        keepScore(userAnswer === randomQuestion.correctAnswer);
-        runQuiz();
+        wrongAnswers = totalQuestions - correctAnswers;
+        accuracy = correctAnswers / totalQuestions * 100;
+        console.log('Quiz Over! Here are your results:');
+        console.log('Total Questions: ' + totalQuestions);
+        console.log('Correct Answers: ' + correctAnswers);
+        console.log('Wrong Answers: ' + wrongAnswers);
+        console.log('Accuracy: ' + accuracy.toFixed(2) + '%');
     }
 
-    runQuiz();
-    
+    nextQuestion();
+
+    // function runQuiz() {
+    //     var randomIndex = Math.floor(Math.random() * 13);
+    //     var randomQuestion = questionBank[randomIndex];
+    //     randomQuestion.displayQuestion();
+    //     var userAnswer = prompt('Please enter the correct answer (e.g., A, B, C, or D):').toUpperCase();
+    //     if (userAnswer === 'EXIT') {
+    //         console.log('Thanks for playing! Goodbye!');
+    //         console.log('Your final score is: ' + keepScore(false));
+    //         console.log('-----------------------------------');
+    //         return;
+    //     }
+
+    //     randomQuestion.checkAnswer(userAnswer);
+    //     keepScore(userAnswer === randomQuestion.correctAnswer);
+    //     runQuiz();
+    // }
+
+    // runQuiz();
+
 })();
